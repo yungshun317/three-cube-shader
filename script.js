@@ -1,5 +1,7 @@
 import * as THREE from "./three.module.min.js";
 import { OrbitControls } from "./OrbitControls.js";
+import vShader from "./shaders/vertex.glsl";
+import fShader from "./shaders/fragment.glsl";
 
 // [1] Scene
 const scene = new THREE.Scene();
@@ -21,7 +23,10 @@ window.addEventListener("resize", () => {
 
 // [2] Mesh
 const geometry = new THREE.PlaneGeometry(1, 1);
-const material = new THREE.RawShaderMaterial();
+const material = new THREE.RawShaderMaterial({
+    vertexShader: vShader,
+    fragmentShader: fShader
+});
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
