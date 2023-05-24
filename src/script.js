@@ -1,5 +1,5 @@
-import * as THREE from "./three.module.min.js";
-import { OrbitControls } from "./OrbitControls.js";
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vShader from "./shaders/vertex.glsl";
 import fShader from "./shaders/fragment.glsl";
 

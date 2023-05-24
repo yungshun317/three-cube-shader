@@ -12,7 +12,10 @@ module.exports = {
     devtool: "source-map",
     plugins: [
         new CopyWebpackPlugin({
-            pattern: [{ from: path.resolve(__dirname, "../static" ) }]
+            patterns: [{
+                from: path.resolve(__dirname, "../static/**/*"),
+                noErrorOnMissing: true
+            }]
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),

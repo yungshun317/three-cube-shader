@@ -2,9 +2,9 @@
   "name": "three-cube-shader",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "src/script.js",
   "scripts": {
-    "dev": "webpack serve --config ./bundler/webpack.config.js"
+    "dev": "webpack serve --config bundler/webpack.dev.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,10 @@
     "raw-loader": "^4.0.2",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.0.4",
+    "webpack-merge": "^5.10.0"
+  },
+  "dependencies": {
+    "three": "^0.164.1"
   }
 }
