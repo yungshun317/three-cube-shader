@@ -1,3 +1,4 @@
+import "./styles.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vShader from "./shaders/vertex.glsl";
@@ -22,13 +23,26 @@ window.addEventListener("resize", () => {
 })
 
 // [2] Mesh
-const geometry = new THREE.PlaneGeometry(1, 1);
+const geometry = new THREE.PlaneGeometry(0.75, 0.75, 64, 64);
+console.log(geometry);
 const material = new THREE.RawShaderMaterial({
     vertexShader: vShader,
     fragmentShader: fShader
 });
+console.log(material);
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
+
+// Attribute
+const amount = geometry.attributes.position.count;
+const newAttributeArray = new Float32Array(amount);
+for (let i = 0; i < amount; i++) {
+    newAttributeArray[i] = Math.random();
+}
+geometry.setAttribute(
+    "a_modulus",
+    new THREE.BufferAttribute(newAttributeArray, 1)
+);
 
 // [3] Camera
 const aspect = {
