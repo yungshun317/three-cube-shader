@@ -11,7 +11,7 @@ const scene = new THREE.Scene();
 const cursor = {
     x: 0, y: 0
 };
-window.addEventListener("mouseover", (e) => {
+window.addEventListener("mousemove", (e) => {
    cursor.x = e.clientX / window.innerWidth;
    cursor.y = e.clientY / window.innerHeight;
 });
@@ -96,6 +96,7 @@ const animate = () => {
     // Update `u_cursorcolor`
     material.uniforms.u_cursorcolor.value.x = cursor.x;
     material.uniforms.u_cursorcolor.value.y = cursor.y;
+    // console.log(cursor.x, cursor.y);
 
     // Update orbitControls
     orbitControls.update();
