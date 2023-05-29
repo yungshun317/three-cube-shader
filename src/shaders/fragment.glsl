@@ -1,16 +1,20 @@
 precision mediump float;
-uniform vec3 u_color;
-uniform float u_timecolor;
-uniform vec2 u_cursorcolor;
+
+varying vec2 v_uv;
 
 void main() {
-    gl_FragColor = vec4(u_color, 1.0);
+    /*
+    vec2 copy_uv = v_uv;
 
-    // Change color depending on `elapsedTime`
-    // gl_FragColor.r = 1.0 + sin(u_timecolor);
-    // gl_FragColor.g = cos(u_timecolor);
-    // gl_FragColor.b = -sin(u_timecolor);
+    if (copy_uv.x > 0.5) {
+        copy_uv.x = 0.0;
+    } else {
+        copy_uv.x = 1.0;
+    }
 
-    // Change color depending on mouse move
-    gl_FragColor = vec4(u_cursorcolor.x, u_cursorcolor.y, 1.0, 1.0);
+    gl_FragColor = vec4(copy_uv, 1.0, 1.0);
+    */
+
+    float copy_uvx = step(v_uv.x, 0.5);
+    gl_FragColor = vec4(copy_uvx, v_uv.y, 1.0, 1.0);
 }
