@@ -15,6 +15,11 @@ void main() {
     gl_FragColor = vec4(copy_uv, 1.0, 1.0);
     */
 
-    float copy_uvx = step(v_uv.x, 0.5);
-    gl_FragColor = vec4(copy_uvx, v_uv.y, 1.0, 1.0);
+    // `step`
+    // float copy_uvx = step(v_uv.x, 0.5);
+    // gl_FragColor = vec4(copy_uvx, v_uv.y, 1.0, 1.0);
+
+    // `mix`
+    vec3 mixing = mix(vec3(0.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0), v_uv.x);
+    gl_FragColor = vec4(mixing, 1.0);
 }
