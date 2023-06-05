@@ -53,7 +53,11 @@ void main() {
     // gl_FragColor = vec4(mod_, mod_, mod_, 1.0);
 
     // `length`
-    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    float vector_length = length(vec2(0.4, 0.3));
-    gl_FragColor.r = vector_length;
+    // gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    // float vector_length = length(vec2(0.4, 0.3));
+    // gl_FragColor.r = vector_length;
+
+    // `distance`
+    float distance_ = distance(v_uv, vec2(0.5));
+    gl_FragColor = vec4(distance_, distance_, distance_, 1.0);
 }
