@@ -27,10 +27,12 @@ void main() {
     */
 
     // `smoothstep`
+    /*
     vec3 color = vec3(1.0, 1.0, 1.0);
     color.r = smoothstep(0.0, 0.04, v_position.x);
     color.g = smoothstep(0.0, 0.04, v_position.y);
     gl_FragColor = vec4(color, 1.0);
+    */
 
     // `mix`
     // vec3 mixing = mix(vec3(0.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0), v_uv.x);
@@ -44,4 +46,8 @@ void main() {
     color.b = clamp(v_uv.x, 0.0, 1.0);
     gl_FragColor = vec4(color, 1.0);
     */
+
+    vec3 color = vec3(1.0, 1.0, 1.0);
+    float mod_ = mod(v_uv.y * 5.0, 1.0);
+    gl_FragColor = vec4(mod_, mod_, mod_, 1.0);
 }
