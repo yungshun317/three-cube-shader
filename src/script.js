@@ -23,11 +23,13 @@ window.addEventListener("resize", () => {
 })
 
 // [2] Mesh
-const geometry = new THREE.PlaneGeometry(0.75, 0.75, 64, 64);
+const geometry = new THREE.PlaneGeometry(1, 1, 64, 64);
 console.log(geometry);
 const material = new THREE.RawShaderMaterial({
     vertexShader: vShader,
-    fragmentShader: fShader
+    fragmentShader: fShader,
+    side: THREE.DoubleSide,
+    wireframe: true
 });
 console.log(material);
 const mesh = new THREE.Mesh(geometry, material);
@@ -39,7 +41,7 @@ const aspect = {
     height: window.innerHeight
 }
 const camera = new THREE.PerspectiveCamera(75, aspect.width / aspect.height);
-camera.position.z = 1;
+camera.position.z = 2;
 scene.add(camera);
 
 // [4] Renderer
