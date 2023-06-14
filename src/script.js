@@ -29,7 +29,9 @@ const material = new THREE.RawShaderMaterial({
     vertexShader: vShader,
     fragmentShader: fShader,
     side: THREE.DoubleSide,
-    wireframe: true
+    uniforms: {
+        u_time: { value: 0 }
+    }
 });
 console.log(material);
 const mesh = new THREE.Mesh(geometry, material);
@@ -41,7 +43,7 @@ const aspect = {
     height: window.innerHeight
 }
 const camera = new THREE.PerspectiveCamera(75, aspect.width / aspect.height);
-camera.position.z = 2;
+camera.position.z = 1;
 scene.add(camera);
 
 // [4] Renderer
@@ -59,6 +61,8 @@ const clock = new THREE.Clock();
 const animate = () => {
     // GetElapsedTime
     const elapsedTime = clock.getElapsedTime();
+
+    material.uniforms.u_time.value = elapsedTime;
 
     // Update orbitControls
     orbitControls.update();
