@@ -7,6 +7,10 @@ import fShader from "./shaders/fragment.glsl";
 // [1] Scene
 const scene = new THREE.Scene();
 
+// TextureLoader
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load("/static/textures/flower.jpg");
+
 // Responsive
 window.addEventListener("resize", () => {
     // Update size
@@ -30,7 +34,7 @@ const material = new THREE.RawShaderMaterial({
     fragmentShader: fShader,
     side: THREE.DoubleSide,
     uniforms: {
-        u_time: { value: 0 }
+        u_texture: { value: texture }
     }
 });
 console.log(material);
@@ -61,8 +65,6 @@ const clock = new THREE.Clock();
 const animate = () => {
     // GetElapsedTime
     const elapsedTime = clock.getElapsedTime();
-
-    material.uniforms.u_time.value = elapsedTime;
 
     // Update orbitControls
     orbitControls.update();
