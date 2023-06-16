@@ -3,10 +3,16 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vShader from "./shaders/vertex.glsl";
 import fShader from "./shaders/fragment.glsl";
-import {EffectComposer} from "three/examples/jsm/postprocessing/EffectComposer";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+import * as dat from "dat.gui";
 
 // [1] Scene
 const scene = new THREE.Scene();
+
+// GUI
+const gui = new dat.GUI();
 
 // Lights
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -73,7 +79,23 @@ const effectComposer = new EffectComposer(renderer);
 effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 effectComposer.setSize(aspect.width, aspect.height);
 
+// `RenderPass`
+const renderPass = new RenderPass(scene, camera);
+effectComposer.addPass(renderPass);
 
+// Passes
+// `UnrealBloomPass`
+const unrealBloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight)
+);
+unrealBloomPass.strength = 0.35;
+unrealBloomPass.radius = 0.0;
+unrealBloomPass.threshold = 0.45;
+unrealBloomPass.enabled = false;
+effectComposer.addPass(unrealBloomPass);
+gui.add(unrealBloomPass, "strength").min(0.0).max(1.0).step(0.001);
+gui.add(unrealBloomPass, "threshold").min(0.0).max(1.0).step(0.001);
+gui.add(unrealBloomPass, "enabled");
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
@@ -90,7 +112,8 @@ const animate = () => {
     orbitControls.update();
 
     // Renderer
-    renderer.render(scene, camera);
+    // renderer.render(scene, camera);
+    effectComposer.render();
 
     // RequestAnimationFrame
     window.requestAnimationFrame(animate);
