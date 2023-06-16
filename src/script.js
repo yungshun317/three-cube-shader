@@ -9,6 +9,7 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
 import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass";
 import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
+import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass";
 import * as dat from "dat.gui";
 
 // [1] Scene
@@ -115,8 +116,14 @@ effectComposer.addPass(dotScreenPass);
 */
 
 // `FilmPass`
+/*
 const filmPass = new FilmPass();
 effectComposer.addPass(filmPass);
+*/
+
+// `AfterimagePass`
+const afterimagePass = new AfterimagePass();
+effectComposer.addPass(afterimagePass);
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
