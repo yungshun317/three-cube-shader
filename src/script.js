@@ -10,6 +10,8 @@ import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
 import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass";
 import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
 import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass";
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
+import { LuminosityShader } from "three/examples/jsm/shaders/LuminosityShader";
 import * as dat from "dat.gui";
 
 // [1] Scene
@@ -122,8 +124,14 @@ effectComposer.addPass(filmPass);
 */
 
 // `AfterimagePass`
+/*
 const afterimagePass = new AfterimagePass();
 effectComposer.addPass(afterimagePass);
+*/
+
+// `LuminosityShader`
+const luminosityShader = new ShaderPass(LuminosityShader);
+effectComposer.addPass(luminosityShader);
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
