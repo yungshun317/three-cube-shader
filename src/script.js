@@ -12,6 +12,7 @@ import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
 import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { LuminosityShader } from "three/examples/jsm/shaders/LuminosityShader";
+import { RGBShiftShader } from "three/examples/jsm/shaders/RGBShiftShader";
 import * as dat from "dat.gui";
 
 // [1] Scene
@@ -130,8 +131,14 @@ effectComposer.addPass(afterimagePass);
 */
 
 // `LuminosityShader`
+/*
 const luminosityShader = new ShaderPass(LuminosityShader);
 effectComposer.addPass(luminosityShader);
+*/
+
+// `RGBShiftShader`
+const rgbShiftShader = new ShaderPass(RGBShiftShader);
+effectComposer.addPass(rgbShiftShader)
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
