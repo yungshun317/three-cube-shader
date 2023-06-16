@@ -6,6 +6,7 @@ import fShader from "./shaders/fragment.glsl";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
 import * as dat from "dat.gui";
 
 // [1] Scene
@@ -85,6 +86,7 @@ effectComposer.addPass(renderPass);
 
 // Passes
 // `UnrealBloomPass`
+/*
 const unrealBloomPass = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight)
 );
@@ -96,6 +98,11 @@ effectComposer.addPass(unrealBloomPass);
 gui.add(unrealBloomPass, "strength").min(0.0).max(1.0).step(0.001);
 gui.add(unrealBloomPass, "threshold").min(0.0).max(1.0).step(0.001);
 gui.add(unrealBloomPass, "enabled");
+*/
+
+// `GlitchPass`
+const glitchPass = new GlitchPass();
+effectComposer.addPass(glitchPass);
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
