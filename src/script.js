@@ -137,8 +137,21 @@ effectComposer.addPass(luminosityShader);
 */
 
 // `RGBShiftShader`
+/*
 const rgbShiftShader = new ShaderPass(RGBShiftShader);
 effectComposer.addPass(rgbShiftShader)
+*/
+
+// Custom Pass
+const customShader = {
+    uniforms: {
+        tDiffuse: { value: null }
+    },
+    vertexShader: vShader,
+    fragmentShader: fShader
+}
+const customPass = new ShaderPass(customShader);
+effectComposer.addPass(customPass);
 
 // OrbitControls
 const orbitControls = new OrbitControls(camera, canvas);
