@@ -4,12 +4,9 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-    entry: {
-        "app1": path.resolve(__dirname, "../src/script.js"),
-        "app2": path.resolve(__dirname, "../src2/script.js")
-    },
+    entry: path.resolve(__dirname, "../src/script.js"),
     output: {
-        filename: "[name].bundle.[contenthash].js",
+        filename: "bundle.[contenthash].js",
         path: path.resolve(__dirname, "../dist"),
     },
     devtool: "source-map",
@@ -22,12 +19,6 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),
-            filename: "index.html",
-            minify: true
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "../src2/index2.html"),
-            filename: "index2.html",
             minify: true
         }),
         new MiniCSSExtractPlugin()
@@ -55,15 +46,15 @@ module.exports = {
                     }
                 ]
             }, {
-               test: /\.(ttf|eot|woff|woff2)$/,
-               use: [
-                   {
-                       loader: "file-loader",
-                       options: {
-                           outputPath: "assets/fonts/"
-                       }
-                   }
-               ]
+                test: /\.(ttf|eot|woff|woff2)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            outputPath: "assets/fonts/"
+                        }
+                    }
+                ]
             }, {
                 test: /\.(glsl|vs|fs|frag)$/,
                 exclude: /node_modules/,
